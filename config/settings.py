@@ -65,10 +65,9 @@ INSTALLED_APPS = [
 
     # Charts
     "apps.charts",
-
-    # Tooling API-GEN
-    'rest_framework',            # Include DRF           # <-- NEW 
-    'rest_framework.authtoken',  # Include DRF Auth      # <-- NEW     
+    
+    "apps.admin_gradient",
+        
 ]
 
 MIDDLEWARE = [

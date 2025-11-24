@@ -22,5 +22,5 @@ urlpatterns = [
     path('', include('apps.dyn_api.urls')),
     path('charts/', include('apps.charts.urls')),
     path("admin/", admin.site.urls),
-    path("", include('admin_gradient.urls'))
+    path("", include('apps.admin_gradient.urls'))
 ]
