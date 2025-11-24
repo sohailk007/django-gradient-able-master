@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  appseed-app:
+    container_name: appseed_app
+    restart: always
+    build: .
+    environment:
+      - DB_ENGINE=postgresql
+      - DB_NAME=appseed_db
+      - DB_USERNAME=appseed_usr
+      - DB_PASS=pass
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      - db
+    volumes:
+      - staticfiles:/staticfiles
+    networks:
+      - db_network
+      - web_network
+
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=appseed_usr
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=appseed_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db_network
+
+  nginx:
+    container_name: nginx
+    restart: always
+    image: "nginx:latest"
+    ports:
+      - "5085:5085"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - staticfiles:/staticfiles:ro
+    networks:
+      - web_network
+    depends_on:
+      - appseed-app
+
+networks:
+  db_network:
+    driver: bridge
+  web_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  staticfiles:

@@ -1,0 +1,27 @@
+# Core
+django>=5.1,<6.0
+python-dotenv
+str2bool
+
+# UI & Admin UI
+django-jazzmin
+django-admin-gradient
+
+# Tools
+django-debug-toolbar
+djangorestframework
+requests
+pandas
+graphviz
+astor
+
+# AI
+anthropic
+
+# Deployment
+whitenoise
+gunicorn
+
+# DB
+psycopg2-binary==2.9.9
+django-dbbackup
